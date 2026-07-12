@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>5分でわかる、いまの自分のバランス｜7 CORE CHECKER</title>
+<meta property="og:title" content="5分でわかる、いまの自分のバランス｜7 CORE CHECKER">
+<meta property="og:description" content="がんばっているのに空回り——7つの視点・100項目で現在地を見える化する無料診断">
+<meta property="og:type" content="website">
+<meta name="description" content="がんばっているのに空回り——7つの視点・100項目で現在地を見える化する無料診断">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5分でわかる、いまの自分のバランス｜7 CORE CHECKER">
+<meta name="twitter:description" content="がんばっているのに空回り——7つの視点・100項目で現在地を見える化する無料診断">
+<link rel="icon" type="image/png" href="favicon.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+<style>
+  /* ============================
+     CSS Custom Properties
+     ============================ */
+  :root {
+    --bg: #F7FCFC;
+    --surface: #FFFFFF;
+    --surface-2: #EBEEF2;
+    --border: #DDE3E8;
+    --text: #1D2328;
+    --text-2: #59656E;
+    --muted: #85938F;
+    --primary: #4F7C87;
+    --secondary: #62B8A0;
+    --col: 760px;
+    /* Layer colors */
+    --c-shinri: #4F7C87;
+    --c-shintai: #62B8A0;
+    --c-koudou: #B98AD6;
+    --c-kankyou: #E0A458;
+    --c-kankei: #3B82C4;
+    --c-keizai: #2E9E6B;
+    --c-koushin: #85938F;
+  }
+
+  /* ============================
+     Reset & Base
+     ============================ */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', 'YuGothic', sans-serif;
+    font-size: 16px;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+  }
+  .app {
+    max-width: var(--col);
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 18px;
+  }
+
+  /* ============================
+     Typography
+     ============================ */
+  h1 { font-size: 25px; font-weight: 700; line-height: 1.45; margin: 0 0 10px; }
+  h2 { font-size: 22px; font-weight: 700; line-height: 1.4; margin: 0 0 10px; }
+  h3 { font-size: 18px; font-weight: 700; line-height: 1.4; margin: 0 0 10px; }
+  p { margin: 0 0 14px; }
+
+  /* ============================
+     Utility Classes
+     ============================ */
+  .sec { color: var(--text-2); }
+  .muted { color: var(--muted); }
+  .center { text-align: center; }
+  .meta { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .hidden { display: none !important; }
+  a { color: var(--primary); cursor: pointer; }
+
+  /* ============================
+     Buttons
+     ============================ */
+  .btn {
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 99px;
+    padding: 14px 32px;
+    min-height: 48px;
+    background: var(--primary);
+    color: #fff;
+    transition: .18s;
+    text-decoration: none;
+  }
+  .btn:hover { opacity: .92; }
+  .btn:active { transform: translateY(1px); }
+  .btn-sec { background: #fff; color: var(--secondary); border: 1px solid var(--secondary); }
+  .btn-ghost { background: transparent; color: var(--text-2); border: 1px solid var(--border); padding: 13px 24px; }
+  .btn-line { background: #06C755; color: #fff; }
+  .linklike { background: none; border: none; color: var(--primary); font: inherit; cursor: pointer; text-decoration: underline; padding: 0; }
+
+  /* ============================
+     Intro Page
+     ============================ */
+  #s-intro {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 48px 4px;
+  }
+  .tool-name {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--primary);
+  }
+  .tool-name span {
+    font-weight: 400;
+    letter-spacing: .08em;
+    color: var(--muted);
+  }
+  .intro-icon {
+    width: 96px;
+    height: 96px;
+    margin: 14px auto 10px;
+  }
+  .intro-target {
+    font-size: 15px;
+    color: var(--text-2);
+    margin: 0 0 8px;
+    line-height: 1.7;
+  }
+  .notes {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 18px 0 22px;
+  }
+  .chip {
+    background: var(--surface-2);
+    border-radius: 99px;
+    padding: 6px 16px;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+  .intro-gets {
+    text-align: left;
+    max-width: 440px;
+    margin: 18px auto 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ig {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 15px;
+  }
+  .ig-ic {
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+    border-radius: 99px;
+    background: var(--secondary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .ig b { display: block; font-size: 15px; }
+  .ig span { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+
+  /* ============================
+     Progress Tracker (Check Phase)
+     ============================ */
+  .tracker {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--bg);
+    padding: 14px 0 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .steps { display: flex; gap: 6px; align-items: center; }
+  .step {
+    flex: 1;
+    height: 6px;
+    border-radius: 99px;
+    background: var(--surface-2);
+    transition: .3s;
+  }
+  .step.done { background: var(--secondary); }
+  .step.cur { background: var(--primary); }
+  .steps-label {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-2);
+    margin-top: 8px;
+  }
+  .steps-label b { color: var(--primary); }
+
+  /* ============================
+     Check Page (Layer Items)
+     ============================ */
+  #s-check {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .layer-intro {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 18px 0 6px;
+  }
+  .layer-num {
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    border-radius: 99px;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    margin-top: 2px;
+  }
+  .layer-meaning {
+    font-size: 14px;
+    color: var(--text-2);
+    margin: 0 0 4px;
+  }
+  .check-instruction {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 14px 0 10px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .check-instruction::before,
+  .check-instruction::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .check-instruction span { white-space: nowrap; }
+  .checklist { margin: 0 0 8px; }
+  .ci {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: .13s;
+    line-height: 1.65;
+    min-height: 48px;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .ci:hover { border-color: var(--secondary); }
+  .ci.on { background: #EFF7F3; border-color: var(--secondary); }
+  /* C-4: check animation */
+  .ci.pop { animation: ciPop .25s ease; }
+  @keyframes ciPop { 0%{transform:scale(1)} 50%{transform:scale(1.02)} 100%{transform:scale(1)} }
+  .ci .box {
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .18s;
+  }
+  .ci.on .box { background: var(--secondary); border-color: var(--secondary); }
+  .ci .box svg { opacity: 0; }
+  .ci.on .box svg { opacity: 1; }
+  .qnav {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    padding: 14px 0 26px;
+  }
+  .qnav .count { font-size: 13px; color: var(--text-2); }
+
+  /* ============================
+     Result Page
+     ============================ */
+  #s-result { padding: 24px 0 64px; }
+
+  /* Capture area card */
+  #capture-area {
+    background: #fff;
+    border-radius: 20px;
+    border: 3px solid var(--primary);
+    overflow: hidden;
+  }
+
+  /* Branded header inside capture */
+  .capture-header {
+    text-align: center;
+    padding: 16px 18px 14px;
+    background: var(--primary);
+    color: #fff;
+  }
+  .capture-header .tool-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    color: #fff;
+  }
+  .capture-header .tool-label span {
+    font-weight: 400;
+    letter-spacing: .08em;
+    opacity: .7;
+  }
+
+  /* Result Hero */
+  .r-hero {
+    text-align: center;
+    background: #fff;
+    padding: 28px 24px 20px;
+  }
+  .r-hero .type-en {
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: .16em;
+    color: var(--primary);
+    font-weight: 700;
+    background: #E0EEF0;
+    padding: 6px 24px;
+    border-radius: 99px;
+    margin-bottom: 12px;
+  }
+  .r-hero .type-ja {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 10px;
+    line-height: 1.4;
+  }
+  .r-hero .type-line {
+    font-size: 15px;
+    color: var(--text-2);
+    max-width: 480px;
+    margin: 0 auto 20px;
+    line-height: 1.8;
+  }
+  .stat-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 0 20px;
+  }
+  .stat {
+    background: #F0F6F7;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 22px;
+    min-width: 110px;
+    text-align: center;
+  }
+  .stat .v { font-size: 22px; font-weight: 700; white-space: nowrap; color: var(--primary); }
+  .stat .k { font-size: 12px; color: var(--text-2); margin-top: 2px; }
+  .r-hero .strategy-text {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.8;
+    text-align: left;
+    margin: 0;
+    padding: 16px 6px 0;
+    border-top: 1px solid #E4EAEC;
+  }
+
+  /* Blocks */
+  .block { padding: 0 24px; margin-top: 24px; }
+  .block-h {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .canvas-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 6px 0;
+  }
+  .legend {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* Capture footer branding */
+  .capture-footer {
+    text-align: center;
+    padding: 16px 18px 18px;
+    margin-top: 24px;
+    background: var(--primary);
+  }
+  .capture-footer .foot-label {
+    font-size: 11px;
+    letter-spacing: .1em;
+    color: rgba(255,255,255,.85);
+  }
+
+  /* Focus Card (Action Suggestions) */
+  .focus-card {
+    background: #F6FAFB;
+    border: 1px solid #D2DFE2;
+    border-left: 4px solid var(--primary);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .focus-card .lname { font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 0; }
+  .sug {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px 2px;
+    border-top: 1px dashed var(--border);
+  }
+  .sug .was { font-size: 13px; color: var(--muted); }
+  .sug .was-done { font-size: 14px; color: var(--text); }
+  .sug .act { font-weight: 700; margin-top: 1px; }
+  .sug.done { opacity: .7; }
+  .box-done {
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .box-todo {
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    border: 2px solid var(--border);
+    margin-top: 1px;
+  }
+
+
+  /* CTA */
+  .cta {
+    background: #EFF6F4;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 26px;
+    text-align: center;
+    margin-top: 32px;
+  }
+  .cta .btn { margin: 6px; }
+  .cta .cta-body {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .cta .cta-safe {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  /* Sticky CTA bar (mobile, result page only) */
+  .sticky-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-top: 1px solid var(--border);
+    padding: 10px 18px;
+    text-align: center;
+  }
+  .sticky-cta .btn { width: 100%; max-width: 400px; padding: 13px 24px; font-size: 15px; }
+  @media (max-width: 760px) {
+    .sticky-cta.visible { display: block; }
+    /* Add bottom padding to result section so sticky bar doesn't cover content */
+    #s-result.has-sticky { padding-bottom: 80px; }
+  }
+
+  /* Image save prompt */
+  .save-prompt {
+    font-size: 14px;
+    color: var(--text-2);
+    text-align: center;
+    margin-bottom: 8px;
+    line-height: 1.7;
+  }
+
+  /* Export Buttons */
+  .action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 22px;
+  }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ============================
+     Modal
+     ============================ */
+  .modal-mask {
+    position: fixed;
+    inset: 0;
+    background: rgba(29,35,40,.45);
+    z-index: 50;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 24px 14px;
+    overflow: auto;
+  }
+  .modal {
+    background: #fff;
+    border-radius: 12px;
+    max-width: 680px;
+    width: 100%;
+    padding: 28px 26px 32px;
+    box-shadow: 0 8px 32px rgba(29,35,40,.16);
+    margin: auto;
+  }
+  .modal h2 { margin-top: 0; }
+  .modal .close {
+    float: right;
+    background: none;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--muted);
+  }
+  .modal .lead { font-size: 17px; color: var(--text); }
+  .layer-defs { margin: 18px 0; display: flex; flex-direction: column; gap: 6px; }
+  .ld {
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: var(--bg);
+  }
+  .ld .ldn {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ld .ldn .num {
+    font-size: 11px;
+    font-weight: 600;
+    opacity: .5;
+    letter-spacing: .04em;
+  }
+  .ld .ldb {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-2);
+    padding-left: 2px;
+  }
+
+  /* ============================
+     Animation
+     ============================ */
+  .fade {
+    animation: fade .5s ease;
+  }
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+  /* R-3: Result reveal animation */
+  .r-hero.reveal .type-ja {
+    animation: scaleIn .6s cubic-bezier(.34,1.56,.64,1) .2s both;
+  }
+  .r-hero.reveal .stat-row {
+    animation: fade .5s ease .5s both;
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(.85); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* ============================
+     Responsive
+     ============================ */
+  @media (max-width: 520px) {
+    h1 { font-size: 22px; }
+    .r-hero .type-ja { font-size: 22px; }
+    .r-hero { padding: 22px 16px 16px; }
+    .block { padding: 0 16px; }
+    /* I-3: Reduce intro scroll on mobile */
+    .intro-icon { width: 48px; height: 48px; margin: 6px auto 6px; }
+    .ig span { display: none; }
+    .ig { padding: 10px 14px; }
+  }
+  @media (max-width: 380px) {
+    body { font-size: 15px; }
+    .app { padding: 0 14px; }
+    .block { padding: 0 14px; }
+    .stat { min-width: 90px; padding: 8px 12px; }
+    .stat .v { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ===== INTRO ===== -->
+  <section id="s-intro">
+    <div class="tool-name">7 CORE CHECKER</div>
+    <svg class="intro-icon" viewBox="0 0 96 96">
+      <!-- Outer heptagon (7-sided) -->
+      <polygon points="48,6 82.7,20.5 90.5,56.3 68.5,85.5 27.5,85.5 5.5,56.3 13.3,20.5" fill="none" stroke="#DDE3E8" stroke-width="1.2"/>
+      <!-- Inner heptagon -->
+      <polygon points="48,22 69.1,31.5 74.2,54.8 60.3,72.5 35.7,72.5 21.8,54.8 26.9,31.5" fill="rgba(98,184,160,0.08)" stroke="#DDE3E8" stroke-width="1"/>
+      <!-- Axis lines from center to each vertex -->
+      <line x1="48" y1="48" x2="48" y2="6" stroke="#DDE3E8" stroke-width="0.8"/>
+      <line x1="48" y1="48" x2="82.7" y2="20.5" stroke="#DDE3E8" stroke-width="0.8"/>
+      <line x1="48" y1="48" x2="90.5" y2="56.3" stroke="#DDE3E8" stroke-width="0.8"/>
+      <line x1="48" y1="48" x2="68.5" y2="85.5" stroke="#DDE3E8" stroke-width="0.8"/>
+      <line x1="48" y1="48" x2="27.5" y2="85.5" stroke="#DDE3E8" stroke-width="0.8"/>
+      <line x1="48" y1="48" x2="5.5" y2="56.3" stroke="#DDE3E8" stroke-width="0.8"/>
+      <line x1="48" y1="48" x2="13.3" y2="20.5" stroke="#DDE3E8" stroke-width="0.8"/>
+      <!-- 7 dots on vertices with layer colors -->
+      <circle cx="48" cy="6" r="4" fill="#4F7C87"/>
+      <circle cx="82.7" cy="20.5" r="4" fill="#62B8A0"/>
+      <circle cx="90.5" cy="56.3" r="4" fill="#B98AD6"/>
+      <circle cx="68.5" cy="85.5" r="4" fill="#E0A458"/>
+      <circle cx="27.5" cy="85.5" r="4" fill="#3B82C4"/>
+      <circle cx="5.5" cy="56.3" r="4" fill="#2E9E6B"/>
+      <circle cx="13.3" cy="20.5" r="4" fill="#85938F"/>
+      <!-- Center dot -->
+      <circle cx="48" cy="48" r="4" fill="#4F7C87" opacity="0.4"/>
+    </svg>
+    <h1>5分で自分の状態を<br>「7つの要素」から見える化</h1>
+    <p class="intro-target">個人の充実感とパフォーマンスの土台となる「7つの要素」を、100項目であなたの現在地をチェックします。</p>
+    <p><button class="linklike" onclick="openModal()">+「7つの要素」とは?</button></p>
+    <div class="intro-gets">
+      <div class="ig">
+        <div class="ig-ic">1</div>
+        <div><b>7つの要素のバランスが見える</b><span>各要素のどこが充実していて、どこが足りないかを把握できます</span></div>
+      </div>
+      <div class="ig">
+        <div class="ig-ic">2</div>
+        <div><b>いちばん足りていない要素が分かる</b><span>目の前の課題ではなく、本当に優先すべき課題が分かります</span></div>
+      </div>
+      <div class="ig">
+        <div class="ig-ic">3</div>
+        <div><b>最初にやることが具体的に出る</b><span>今日からできる具体的なアクションのヒントが見つかります</span></div>
+      </div>
+    </div>
+    <div class="notes">
+      <span class="chip">所要時間5分・100項目</span>
+      <span class="chip">完全無料・登録不要</span>
+      <span class="chip">プロコーチ監修</span>
+    </div>
+    <div><button class="btn" onclick="start()">「7つの要素」をチェックする</button></div>
+  </section>
+
+  <!-- ===== CHECK ===== -->
+  <section id="s-check" class="hidden">
+    <div class="tracker">
+      <div class="steps" id="steps"></div>
+      <div class="steps-label" id="steps-label"></div>
+    </div>
+    <div class="layer-intro">
+      <div class="layer-num" id="layer-num"></div>
+      <div>
+        <h2 id="layer-title" style="margin:0 0 2px;"></h2>
+        <p class="layer-meaning" id="layer-meaning"></p>
+        <p class="meta" id="layer-benefit" style="margin:0; color:var(--primary);"></p>
+      </div>
+    </div>
+    <div class="check-instruction"><span>当てはまるものにチェック</span></div>
+    <div class="checklist" id="checklist"></div>
+    <p class="meta hidden" id="finish-hint" style="text-align:center; margin:8px 0 0; color:var(--secondary); font-weight:600;"></p>
+    <div class="qnav">
+      <button class="btn btn-ghost" id="back-btn" onclick="prevLayer()">&#8592; 戻る</button>
+      <button class="btn" id="next-btn" onclick="nextLayer()">次へ &#8594;</button>
+    </div>
+  </section>
+
+  <!-- ===== RESULT ===== -->
+  <section id="s-result" class="hidden">
+
+    <!-- Capture area for image export -->
+    <div id="capture-area">
+
+      <!-- Branded header -->
+      <div class="capture-header">
+        <div class="tool-label">7 CORE CHECKER</div>
+      </div>
+
+      <!-- Type Result Hero -->
+      <div class="r-hero">
+        <div class="type-en" id="type-en"></div>
+        <div class="type-ja" id="type-ja"></div>
+        <div class="type-line" id="type-line"></div>
+        <div class="stat-row">
+          <div class="stat"><div class="v" id="st-rate"></div><div class="k">全体の充実度</div></div>
+          <div class="stat"><div class="v" id="st-distort"></div><div class="k">偏り</div></div>
+          <div class="stat"><div class="v" id="st-count"></div><div class="k">チェック数</div></div>
+        </div>
+        <p class="strategy-text" id="strategy"></p>
+      </div>
+
+      <!-- Radar Chart -->
+      <div class="block">
+        <div class="block-h">
+          <h3>7つの要素のバランス</h3>
+          <button class="linklike" onclick="openModal()" style="font-size:13px;">要素の意味を見る</button>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="radar-canvas" width="600" height="600" style="width:300px;height:300px;"></canvas>
+        </div>
+        <div class="legend">外に広がるほど充実。へこみが伸びしろです。</div>
+      </div>
+
+    <!-- Action suggestion (inside capture-area) -->
+    <div class="block">
+      <h3>まず手をつけるなら</h3>
+      <div id="suggestions"></div>
+    </div>
+
+      <!-- Branded footer -->
+      <div class="capture-footer">
+        <div class="foot-label">7 CORE CHECKER — あなたの現在地を7つの要素で見える化</div>
+      </div>
+
+    </div>
+    <!-- End capture-area -->
+
+    <!-- CTA: Image Save + LINE Feedback (unified block) -->
+    <div class="cta">
+      <h3 style="margin-bottom:6px;">この結果をもとに、あなただけのフィードバックをお届けします</h3>
+      <p class="cta-body">あなたの状態に合わせた個別フィードバックを無料でお届けします。<br>結果の画像と、いま気になっていることをLINEで送ってください。</p>
+      <p class="save-prompt" style="margin-bottom:8px;">結果を画像で残しておくと、あとで見返せます。</p>
+      <div class="action-row" style="margin-top:0; margin-bottom:14px;">
+        <button class="btn btn-ghost" onclick="exportImage()">結果を画像で保存</button>
+      </div>
+      <a class="btn btn-line" href="https://lin.ee/ZiTyF6Z" id="cta-line-main" target="_blank" rel="noopener">あなた専用のフィードバックを受け取る</a>
+      <p class="cta-safe">※ 送っていただいたからといって、何かに勧誘することはありません。安心してください。</p>
+    </div>
+
+    <p style="text-align:center; margin-top:24px;"><button class="linklike" onclick="restart()" style="font-size:13px; color:var(--muted);">もう一度やる</button></p>
+  </section>
+
+  <!-- Sticky CTA bar for mobile -->
+  <div class="sticky-cta" id="sticky-cta">
+    <a class="btn btn-line" href="https://lin.ee/ZiTyF6Z" id="cta-line-sticky" target="_blank" rel="noopener">あなた専用のフィードバックを受け取る</a>
+  </div>
+
+  <!-- ===== 7つの要素 モーダル ===== -->
+  <div class="modal-mask hidden" id="modal" onclick="if(event.target===this)closeModal()">
+    <div class="modal">
+      <button class="close" onclick="closeModal()" aria-label="閉じる">&times;</button>
+      <h2 style="margin-bottom:4px;">7つの要素とは</h2>
+      <p style="margin:0 0 2px; font-size:15px; line-height:1.8; color:var(--text);">
+        7つの要素とは個人の充実感とパフォーマンスの土台となる、普遍的な生活の要素です。学術論文と対人支援/UXデザインの実践知から、繰り返し観察されるパターンを7つの要素に構造化しました。
+      </p>
+      <div class="layer-defs" id="modal-layers"></div>
+      <div class="center" style="margin-top:18px;">
+        <button class="btn" onclick="closeModal()">閉じて続ける</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   Configuration
+   ============================================================ */
+/* ============================================================
+   Funnel Analytics (replace with GA4/gtag later)
+   ============================================================ */
+function trackEvent(action, label, value) {
+  /* GA4: if gtag is loaded, fire event */
+  if (typeof gtag === "function") {
+    gtag("event", action, { event_category: "quiz", event_label: label, value: value });
+  }
+  /* Debug log (remove in production or keep for monitoring) */
+  console.log("[funnel]", action, label || "", value != null ? value : "");
+}
+
+const RATE_THRESHOLD = 0.80;
+const DISTORT_THRESHOLD = 0.40;
+const TOTAL_ITEMS = 100;
+
+const LAYER_ORDER = ["心理","身体","行動","環境","関係","経済","更新"];
+const LAYER_COLORS = {
+  "心理":"#4F7C87","身体":"#62B8A0","行動":"#B98AD6",
+  "環境":"#E0A458","関係":"#3B82C4","経済":"#2E9E6B","更新":"#85938F"
+};
+
+/* Layer definitions */
+const LAYER_DEF = {
+  "心理":"判断基準、価値観、自己理解、感情との付き合い方など、すべての行動の起点となる内側の軸",
+  "身体":"体調、睡眠の質、運動習慣、食事のバランス、疲労回復など、日々のエネルギーの源泉",
+  "行動":"日常の習慣、時間の使い方、優先順位のつけ方、ルーティンなど、毎日の行動パターン",
+  "環境":"住まい、仕事場、持ち物、デジタル環境、生活導線など、行動を左右する物理的な設計",
+  "関係":"家族、友人、職場、コミュニティなど、人とのつながりと心理的な安全感",
+  "経済":"収入、支出、貯蓄、お金への不安や価値観など、経済面の安定と自由度",
+  "更新":"学び、振り返り、新しい挑戦、変化への適応など、自分をアップデートし続ける力"
+};
+
+/* Short definitions for check screen and result cards */
+const LAYER_DEF_SHORT = {
+  "心理":"判断基準、価値観、内側の軸",
+  "身体":"体調・睡眠・運動・食事の状態",
+  "行動":"習慣、時間の使い方、日常のリズム",
+  "環境":"住まい・仕事場・生活導線の設計",
+  "関係":"人とのつながりと気持ちの安全",
+  "経済":"収入・支出・お金との付き合い方",
+  "更新":"学び・振り返り・変化への適応力"
+};
+
+/* Layer intro texts for check pages */
+const LAYER_INTRO = {
+  "心理": { benefit: "整うと → 自分の判断基準で選べるように" },
+  "身体": { benefit: "整うと → やりたいことに自然と手が伸びる" },
+  "行動": { benefit: "整うと → 意志力に頼らず良い習慣が回る" },
+  "環境": { benefit: "整うと → 良い行動が自然に生まれる毎日に" },
+  "関係": { benefit: "整うと → 安心感が挑戦のエネルギーに変わる" },
+  "経済": { benefit: "整うと → 本当にやりたいことに集中できる" },
+  "更新": { benefit: "整うと → 変化を恐れずアップデートし続けられる" }
+};
+
+/* 100 Items (Full version) */
+const ITEMS = [
+  {no:1,layer:"心理",text:"自分が人生で大切にしたい価値観（家族・成長・貢献など）を言語化できている",action:"大切にしたい言葉を3つだけ紙に書き出すことから始める"},
+  {no:2,layer:"心理",text:"日常の意思決定で、自分の価値観を判断基準として使えている",action:"次の小さな選択で「どっちが自分の価値観に近い?」と一度だけ問う"},
+  {no:3,layer:"心理",text:"価値観と矛盾した行動をしたとき、違和感に気づき修正できている",action:"モヤついた出来事を1つ思い出し、何に反したかを書いてみる"},
+  {no:4,layer:"心理",text:"日々の活動が、より大きな目的につながっていると実感できている",action:"今日の行動を1つ「何のため?」と一段上につなげて言葉にする"},
+  {no:5,layer:"心理",text:"困難な状況でも、それを乗り越える意味や目的を見出せている",action:"過去の困難が今に与えた良い影響を1つ書き出す"},
+  {no:6,layer:"心理",text:"「足りないもの」より「あるもの」を意識できている",action:"今あるもの・恵まれていることを寝る前に3つ挙げる"},
+  {no:7,layer:"心理",text:"日常の中で感謝できることを意識的に見つけられている",action:"1日の終わりに「ありがとう」を1件メモする習慣を1週間試す"},
+  {no:8,layer:"心理",text:"自分の能力は努力次第で伸ばせると信じている",action:"「できない」を「まだできない」に言い換えてみる"},
+  {no:9,layer:"心理",text:"失敗を「学びの機会」として捉えられている",action:"直近の失敗から得た教訓を1行で言語化する"},
+  {no:10,layer:"心理",text:"自分の本当の気持ちや考えを、自分自身に正直に認められている",action:"今の本音を「本当は〜と思っている」と紙に書く"},
+  {no:11,layer:"心理",text:"自分の価値観や感情を、他者にも適切に表現できている",action:"信頼できる1人に、最近の気持ちを一言だけ伝えてみる"},
+  {no:12,layer:"心理",text:"自分の強み・弱み・盲点を認識している",action:"強み3つ・弱み3つを書き、人に1つ聞いてみる"},
+  {no:13,layer:"心理",text:"自分の価値観や信念が、どう形成されたか理解している",action:"大事な価値観が「いつ・誰から」来たかを1つたどる"},
+  {no:14,layer:"心理",text:"ストレスの後、自分の価値観に立ち返って回復できている",action:"落ち込んだ時に戻れる言葉（座右の銘）を1つ決める"},
+  {no:15,layer:"心理",text:"習慣的な反応でなく、価値観に基づいて意識的に選択できている",action:"反応する前に「ひと呼吸」置く練習を1日1回する"},
+  {no:16,layer:"心理",text:"自分と異なる価値観に触れたとき、柔軟に受け止められている",action:"違和感のある意見を「なぜそう思う?」と一度受け取る"},
+  {no:17,layer:"心理",text:"自分の文化的背景が価値観に与える影響を理解している",action:"自分の「当たり前」を1つ疑って書いてみる"},
+  {no:18,layer:"心理",text:"人生の選択と責任を、他人や環境のせいにせず引き受けている",action:"他人や環境のせいにしている1件を「自分の選択」に言い換える"},
+  {no:19,layer:"身体",text:"朝起きた時に疲労感が残らず、スッキリ目覚められる",action:"就寝1時間前のスマホをやめる夜を週2回つくる"},
+  {no:20,layer:"身体",text:"就寝・起床時刻が毎日ほぼ同じで安定している",action:"まず起床時刻だけを毎日同じにそろえる"},
+  {no:21,layer:"身体",text:"糖質・脂質・塩分の適量を意識できている",action:"1食だけ「腹八分」を意識する日をつくる"},
+  {no:22,layer:"身体",text:"主食・主菜・副菜のバランスを意識した食事ができている",action:"次の食事に野菜（副菜）を1品足す"},
+  {no:23,layer:"身体",text:"十分な水分（1日1.5〜2L程度）がとれている",action:"デスクに水を1本置き、午前に1杯飲む"},
+  {no:24,layer:"身体",text:"週に2回以上の有酸素運動を実施している",action:"まず週1回・15分の早歩きから始める"},
+  {no:25,layer:"身体",text:"週に2回以上の筋力トレーニングを実施している",action:"週1回・自重スクワット10回からでOK、継続を優先"},
+  {no:26,layer:"身体",text:"日常生活で意識的に身体を動かす機会を作れている",action:"エレベーターを1回階段に置き換える"},
+  {no:27,layer:"身体",text:"適正体重・体脂肪率を把握し、健康的な範囲を維持できている",action:"まず体重を週1回だけ測って記録する"},
+  {no:28,layer:"身体",text:"日常で良い姿勢（立位・座位）を意識して保てている",action:"座るとき骨盤を立てるのを1日数回思い出す"},
+  {no:29,layer:"身体",text:"長時間同じ姿勢を続けず、定期的に休憩を取れている",action:"60分に1回立ち上がるアラームをかける"},
+  {no:30,layer:"身体",text:"柔軟性を保つストレッチや体操を習慣化できている",action:"寝る前に首・肩を30秒伸ばす"},
+  {no:31,layer:"身体",text:"過度な飲酒を避け、適量または飲まない習慣ができている",action:"週に「休肝日」を1日決める"},
+  {no:32,layer:"身体",text:"喫煙をしていない、または禁煙に成功している",action:"減らす本数を1本だけ決めて1週間試す"},
+  {no:33,layer:"身体",text:"年に1回以上、定期健康診断を受診している",action:"今年の健診を予約する日をカレンダーに入れる"},
+  {no:34,layer:"身体",text:"歯科検診を定期的（年1〜2回）に受けている",action:"次回の歯科クリーニングを予約する"},
+  {no:35,layer:"身体",text:"呼吸法やリラクゼーションで自律神経を整えられる",action:"4秒吸って8秒吐く呼吸を3回やってみる"},
+  {no:36,layer:"身体",text:"身体からのシグナル（疲労・不調など）に素直に応えられている",action:"疲れを感じたら5分だけ休む許可を自分に出す"},
+  {no:37,layer:"身体",text:"日常的なケア（スキン・ヘア等）を適切に行っている",action:"後回しにしているケアを1つ今週やる"},
+  {no:38,layer:"身体",text:"必要に応じて専門ケア（整体・鍼灸等）を受けている",action:"気になる不調があれば相談先を1つ調べる"},
+  {no:39,layer:"行動",text:"習慣を続けるための仕組み（トリガー・トラッカー）を持っている",action:"続けたい習慣を既存の習慣の「後ろ」にくっつける"},
+  {no:40,layer:"行動",text:"悪い習慣を断つため、きっかけを取り除く工夫ができている",action:"やめたい行動のトリガー（物・通知）を1つ遠ざける"},
+  {no:41,layer:"行動",text:"先延ばしの傾向に気づき、原因を理解できている",action:"先延ばし中のタスク1つの「嫌な理由」を書き出す"},
+  {no:42,layer:"行動",text:"完璧主義を手放し、「まず始める」を優先できている",action:"2分だけ手をつける「2分ルール」を1件試す"},
+  {no:43,layer:"行動",text:"マルチタスクを避け、シングルタスクで集中できている",action:"25分は1つだけに集中する時間を1回つくる"},
+  {no:44,layer:"行動",text:"緊急でないが重要なタスクにも時間を割けている",action:"大事だけど後回しの1件を今週に15分予約する"},
+  {no:45,layer:"行動",text:"朝のルーティンが確立し、良い状態で1日を始められている",action:"朝の最初の3分でやることを1つ固定する"},
+  {no:46,layer:"行動",text:"夜のルーティンが確立し、翌日の準備と良い睡眠ができている",action:"寝る前に翌日の最初の1手だけ決めておく"},
+  {no:47,layer:"行動",text:"ルーティンを柔軟に調整し、状況に応じて変更できている",action:"うまくいかない日用の「最小版」ルーティンを決める"},
+  {no:48,layer:"行動",text:"行動を定期的に振り返り、改善できている",action:"1日の終わりに「良かった1つ・直す1つ」を書く"},
+  {no:49,layer:"行動",text:"意志力の消耗を理解し、重要な決断を疲れていない時に行えている",action:"大事な判断は午前にまわすルールを1つ作る"},
+  {no:50,layer:"環境",text:"寝室環境（温度・光・音）が睡眠に適した状態に整っている",action:"寝室の光（豆電球・通知）を1つ減らす"},
+  {no:51,layer:"環境",text:"不要な物が溜まらず、定期的に整理できている",action:"引き出し1つだけ今日片付ける"},
+  {no:52,layer:"環境",text:"収納に余裕があり、物が溢れていない状態を保てている",action:"「1つ増やしたら1つ手放す」を1回やってみる"},
+  {no:53,layer:"環境",text:"物の定位置が決まり、使った後は戻す習慣がある",action:"よく無くす物（鍵・財布）の定位置を決める"},
+  {no:54,layer:"環境",text:"良い習慣を促し、悪い習慣を抑える環境設計ができている",action:"やりたい行動の道具を「見える所」に置く"},
+  {no:55,layer:"環境",text:"デジタルファイルが整理され、必要な物をすぐ見つけられる",action:"デスクトップの不要ファイルを5個だけ消す"},
+  {no:56,layer:"環境",text:"通知設定が適切で、不要な中断が少ない",action:"不要なアプリ通知を1つオフにする"},
+  {no:57,layer:"環境",text:"パスワード管理・セキュリティ対策が適切にできている",action:"重要アカウント1つの2段階認証を有効化する"},
+  {no:58,layer:"環境",text:"1日のスケジュールに余裕があり、詰め込みすぎていない",action:"予定の間に15分の余白を1つ入れる"},
+  {no:59,layer:"環境",text:"住居の安全性（防犯・防災）が確保されている",action:"防災の備え（水・ライト）を1つ補充する"},
+  {no:60,layer:"環境",text:"住居のメンテナンス（修繕・清掃）が適切にできている",action:"気になっている修繕・掃除を1つ予約する"},
+  {no:61,layer:"関係",text:"日常的に接する人々が、ポジティブな影響をくれている",action:"会うと元気になる人に近況を1通送る"},
+  {no:62,layer:"関係",text:"ネガティブな影響を与える関係と、適切に距離を置ける",action:"消耗する関係への接触を1つだけ減らす"},
+  {no:63,layer:"関係",text:"困ったときに頼れる人が周囲にいる",action:"「困ったら頼れる人」を1人思い浮かべて連絡先を確認する"},
+  {no:64,layer:"関係",text:"情緒的なサポート（共感してもらう）を得られる関係がある",action:"話を聞いてほしい時に頼める相手を1人決めておく"},
+  {no:65,layer:"関係",text:"自分も他者にサポートを提供できている（互恵的）",action:"誰かの役に立てる小さな一言を今日1つ伝える"},
+  {no:66,layer:"関係",text:"孤独感が少なく、つながりを実感できている",action:"しばらく連絡していない人に一言メッセージを送る"},
+  {no:67,layer:"関係",text:"相手の感情や立場を理解しようと努めている",action:"会話で「最後まで遮らず聞く」を1回意識する"},
+  {no:68,layer:"関係",text:"自分の考えや気持ちを、相手に分かりやすく伝えられている",action:"伝えたいことを一文で先に言う練習を1回する"},
+  {no:69,layer:"関係",text:"他者の問題を自分の問題として背負い込みすぎていない",action:"「これは自分の課題?相手の課題?」と1件分けてみる"},
+  {no:70,layer:"関係",text:"必要なときは「No」と言えている",action:"気が進まない誘いに「今回は遠慮します」と返してみる"},
+  {no:71,layer:"関係",text:"対立や誤解が生じたとき、冷静に対話して解決できている",action:"揉めた時に「一晩おいてから話す」を試す"},
+  {no:72,layer:"関係",text:"相手を責めず、自分の気持ちを「Iメッセージ」で伝えられている",action:"「あなたは」でなく「私は〜と感じた」で1回伝える"},
+  {no:73,layer:"関係",text:"他者の貢献や努力を認め、感謝を伝えられている",action:"身近な人に具体的な「ありがとう」を1つ言う"},
+  {no:74,layer:"関係",text:"親密な関係で、依存と自立のバランスが取れている",action:"頼ることと自分でやることを1件ずつ意識する"},
+  {no:75,layer:"関係",text:"家族との関係で、感情的に巻き込まれず冷静でいられる",action:"カッとなった時に一歩引いて深呼吸する"},
+  {no:76,layer:"関係",text:"友人関係を大切にし、時間やエネルギーを投資できている",action:"会いたい友人を1人誘ってみる"},
+  {no:77,layer:"関係",text:"職場の同僚や上司と良好な関係を築けている",action:"同僚への感謝や労いを1つ言葉にする"},
+  {no:78,layer:"経済",text:"自分にとって本当に価値あるものにお金を使えている",action:"直近の支出1つを「満足だった?」と振り返る"},
+  {no:79,layer:"経済",text:"衝動買いを抑え、計画的にお金を使えている",action:"欲しい物は「1日おいてから買う」ルールを1回試す"},
+  {no:80,layer:"経済",text:"お金の不安や罪悪感と向き合い、健全な関係を築けている",action:"お金への不安を1つ紙に書いて見える化する"},
+  {no:81,layer:"経済",text:"生活防衛資金（3〜6ヶ月分）を確保できている",action:"毎月いくら貯めるか、金額を1つ決める"},
+  {no:82,layer:"経済",text:"固定費・変動費を把握し、無駄な支出を削減できている",action:"固定費を1つ見直す（サブスク棚卸し）"},
+  {no:83,layer:"経済",text:"収入の一定割合を貯蓄・投資に回す仕組みがある",action:"給料日に「先取りで自動積立」を1つ設定する"},
+  {no:84,layer:"経済",text:"投資の基礎知識を学び、情報を適切に判断できている",action:"投資の基本を1記事・1本だけ読んでみる"},
+  {no:85,layer:"経済",text:"自分のスキルや強みを活かして収入を得る方法がある",action:"自分の強みで人に提供できることを1つ書き出す"},
+  {no:86,layer:"経済",text:"他人の評価に流されず、自分の基準で消費を選べている",action:"「みんな持ってるから」で買いそうな物を1つ保留する"},
+  {no:87,layer:"経済",text:"お金を「自分だけ」でなく社会に還元する視点がある",action:"少額でも応援したい先を1つ調べてみる"},
+  {no:88,layer:"更新",text:"価値観を定期的に見直し、ステージに応じて更新できている",action:"半年に一度、価値観を見直す日をカレンダーに置く"},
+  {no:89,layer:"更新",text:"定期的に自分の人生や仕事を振り返る時間を持てている",action:"週末に15分だけ振り返る時間を1回つくる"},
+  {no:90,layer:"更新",text:"日々の経験を振り返り、学びを引き出す習慣がある",action:"今日の出来事から「学び」を1つ書く"},
+  {no:91,layer:"更新",text:"成功だけでなく、失敗や困難からも学べている",action:"うまくいかなかった事の「次への教訓」を1つ書く"},
+  {no:92,layer:"更新",text:"知らないことに対して、好奇心を持てている",action:"気になっていたことを1つだけ調べてみる"},
+  {no:93,layer:"更新",text:"新しいスキルや知識を、継続的に学べている",action:"学びたいテーマを1つ決め、1日10分あてる"},
+  {no:94,layer:"更新",text:"学んだことを実践に活かすサイクルを回せている",action:"最近学んだことを1つ、実際に試してみる"},
+  {no:95,layer:"更新",text:"間違いに気づいたとき、考え方を修正できている",action:"「自分が間違っているかも」と一度疑ってみる"},
+  {no:96,layer:"更新",text:"他者からのフィードバックを積極的に求めている",action:"信頼できる人に「改善点を1つ教えて」と聞く"},
+  {no:97,layer:"更新",text:"環境や状況の変化に柔軟に対応できている",action:"変えられない事と変えられる事を1件ずつ分ける"},
+  {no:98,layer:"更新",text:"お金に関する学習や情報収集を継続できている",action:"お金に関する情報源を1つフォローする"},
+  {no:99,layer:"更新",text:"「自分には必要ない」と判断して意図的に外せる項目がある",action:"「これは自分には不要」と思える項目を1つ見つける"},
+  {no:100,layer:"更新",text:"一般的な表現を、自分の状況・価値観に合う言葉に置き換えて読める",action:"気になる項目を1つ、自分の状況に合う言葉に書き換える"}
+];
+
+/* 4 Types */
+const TYPE_INFO = {
+  "Core Master": {
+    ja: "Core Master",
+    sub: "まんべんなく充実している",
+    line: "自分のペースで日々を過ごせていて、大きな不安がない——そんな実感があるのではないでしょうか。",
+    strategy: "いまの状態を維持しながら、これまで手をつけなかった領域に少しずつ踏み出してみてください。その経験を周りに渡していくと、自然と次のステージが見えてきます。"
+  },
+  "High Output": {
+    ja: "High Output",
+    sub: "強みがある一方、偏りも大きい",
+    line: "得意なことでは力を発揮できているのに、どこかで足踏みしている感覚はありませんか。",
+    strategy: "得意な要素はそのままに、いちばん低い要素だけに絞って整えてみてください。そこが変わると、全体のバランスが一気に安定します。"
+  },
+  "Balance": {
+    ja: "Balance",
+    sub: "偏りは少ないが、充実度がまだ低い",
+    line: "大きな波はないけれど、「もう少し充実できるはずなのに」と感じていませんか。",
+    strategy: "偏りが少ないのは良い状態です。ここから少しずつ充実度を上げていけます。まずは「自分が大切にしたいこと」を言葉にしてみるところから始めてみてください。"
+  },
+  "Potential": {
+    ja: "Potential",
+    sub: "伸びしろがいちばん大きい",
+    line: "やりたいことはあるのに、毎日が目の前のことで過ぎていく——そんな感覚はありませんか。",
+    strategy: "全部を一度に変えなくて大丈夫です。いちばん気になっている1つに絞って、小さく手をつけるところからで十分です。"
+  }
+};
+
+/* ============================================================
+   State (no localStorage)
+   ============================================================ */
+const checked = new Set();
+let curLayerIdx = 0;
+
+/* ============================================================
+   Modal
+   ============================================================ */
+function openModal() {
+  buildModalLayers();
+  document.getElementById("modal").classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+}
+function closeModal() {
+  document.getElementById("modal").classList.add("hidden");
+  document.body.style.overflow = "";
+}
+function buildModalLayers() {
+  var box = document.getElementById("modal-layers");
+  if (box.dataset.done) return;
+  box.innerHTML = LAYER_ORDER.map(function(l, i) {
+    var c = LAYER_COLORS[l];
+    return '<div class="ld">' +
+      '<div class="ldn" style="color:' + c + '"><span class="num">' + String(i + 1).padStart(2, "0") + '</span>' + l + '</div>' +
+      '<div class="ldb">' + LAYER_DEF[l] + '</div></div>';
+  }).join("");
+  box.dataset.done = "1";
+}
+
+/* ============================================================
+   Navigation
+   ============================================================ */
+function show(id) {
+  ["intro", "check", "result"].forEach(function(s) {
+    document.getElementById("s-" + s).classList.toggle("hidden", s !== id);
+  });
+  window.scrollTo(0, 0);
+  updateStickyCTA(id === "result");
+}
+function start() {
+  curLayerIdx = 0;
+  trackEvent("quiz_start");
+  show("check");
+  renderLayer();
+}
+function restart() {
+  checked.clear();
+  start();
+}
+function home() {
+  show("intro");
+}
+
+/* ============================================================
+   Check Phase: One layer per page
+   ============================================================ */
+function renderLayer() {
+  var layer = LAYER_ORDER[curLayerIdx];
+  var color = LAYER_COLORS[layer];
+  document.getElementById("layer-num").textContent = String(curLayerIdx + 1).padStart(2, "0");
+  document.getElementById("layer-num").style.background = color;
+  document.getElementById("layer-title").textContent = layer;
+  document.getElementById("layer-meaning").textContent = LAYER_DEF[layer];
+
+  /* Layer benefit text — removed */
+  document.getElementById("layer-benefit").textContent = "";
+  var items = ITEMS.filter(function(it) { return it.layer === layer; });
+  var box = document.getElementById("checklist");
+  box.innerHTML = "";
+
+  items.forEach(function(it) {
+    var on = checked.has(it.no);
+    var el = document.createElement("div");
+    el.className = "ci" + (on ? " on" : "");
+    el.onclick = function() { toggle(it.no, el); };
+    el.innerHTML = '<div class="box"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M2 7l3.5 3.5L12 3" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div>' + it.text + '</div>';
+    box.appendChild(el);
+  });
+
+  document.getElementById("back-btn").style.visibility = curLayerIdx === 0 ? "hidden" : "visible";
+  document.getElementById("next-btn").textContent = curLayerIdx === LAYER_ORDER.length - 1 ? "結果を見る →" : "次へ →";
+
+  /* C-3: Zeigarnik finish hint — removed */
+  document.getElementById("finish-hint").classList.add("hidden");
+
+  renderSteps();
+
+  var sec = document.getElementById("s-check");
+  sec.classList.remove("fade");
+  void sec.offsetWidth;
+  sec.classList.add("fade");
+}
+
+function toggle(no, el) {
+  if (checked.has(no)) {
+    checked.delete(no);
+    el.classList.remove("on");
+  } else {
+    checked.add(no);
+    el.classList.add("on");
+    /* C-4: pop animation on check */
+    el.classList.remove("pop");
+    void el.offsetWidth;
+    el.classList.add("pop");
+  }
+}
+
+function renderSteps() {
+  document.getElementById("steps").innerHTML = LAYER_ORDER.map(function(l, i) {
+    var c = "step";
+    if (i < curLayerIdx) c += " done";
+    else if (i === curLayerIdx) c += " cur";
+    return '<div class="' + c + '"></div>';
+  }).join("");
+  document.getElementById("steps-label").innerHTML = '';
+}
+
+function nextLayer() {
+  if (curLayerIdx < LAYER_ORDER.length - 1) {
+    trackEvent("quiz_page", LAYER_ORDER[curLayerIdx], curLayerIdx + 1);
+    curLayerIdx++;
+    renderLayer();
+  } else {
+    trackEvent("quiz_complete", null, checked.size);
+    computeResult();
+  }
+}
+
+function prevLayer() {
+  if (curLayerIdx > 0) {
+    curLayerIdx--;
+    renderLayer();
+  }
+}
+
+/* ============================================================
+   Result Computation
+   ============================================================ */
+function layerStats() {
+  return LAYER_ORDER.map(function(layer) {
+    var items = ITEMS.filter(function(it) { return it.layer === layer; });
+    var c = items.filter(function(it) { return checked.has(it.no); }).length;
+    return { layer: layer, checked: c, total: items.length, rate: c / items.length };
+  });
+}
+
+function computeResult() {
+  var stats = layerStats();
+  var totalChecked = checked.size;
+  var overall = totalChecked / TOTAL_ITEMS;
+  var rates = stats.map(function(s) { return s.rate; });
+  var distort = Math.round((Math.max.apply(null, rates) - Math.min.apply(null, rates)) * 100) / 100;
+
+  var hi = overall >= RATE_THRESHOLD;
+  var dist = distort >= DISTORT_THRESHOLD;
+  var typeKey = hi ? (dist ? "High Output" : "Core Master") : (dist ? "Potential" : "Balance");
+  var ti = TYPE_INFO[typeKey];
+
+  /* Type display */
+  document.getElementById("type-en").textContent = typeKey.toUpperCase();
+  document.getElementById("type-ja").textContent = ti.sub;
+  document.getElementById("type-line").textContent = ti.line;
+
+  /* R-3: reveal animation */
+  var hero = document.querySelector(".r-hero");
+  hero.classList.remove("reveal");
+  void hero.offsetWidth;
+  hero.classList.add("reveal");
+
+  /* Stats */
+  document.getElementById("st-rate").textContent = Math.round(overall * 100) + "%";
+  var distortPct = Math.round(distort * 100);
+  var distortLabel = distortPct >= 60 ? "大きい" : distortPct >= 30 ? "やや大きい" : "小さい";
+  document.getElementById("st-distort").textContent = distortLabel;
+  document.getElementById("st-count").textContent = totalChecked + " / " + TOTAL_ITEMS;
+
+  /* Charts & suggestions */
+  drawRadar(stats);
+  buildSuggestions(stats, typeKey, ti);
+
+  /* Strategy */
+  document.getElementById("strategy").textContent = ti.strategy;
+
+  trackEvent("quiz_result", typeKey, Math.round(overall * 100));
+
+  show("result");
+  document.getElementById("s-result").classList.add("fade");
+}
+
+/* ============================================================
+   Radar Chart (Canvas 2D API)
+   ============================================================ */
+function drawRadar(stats) {
+  var canvas = document.getElementById("radar-canvas");
+  var ctx = canvas.getContext("2d");
+  var dpr = window.devicePixelRatio || 1;
+  var size = 300;
+
+  canvas.width = size * dpr;
+  canvas.height = size * dpr;
+  canvas.style.width = size + "px";
+  canvas.style.height = size + "px";
+  ctx.scale(dpr, dpr);
+
+  var cx = size / 2;
+  var cy = size / 2;
+  var R = 108;
+  var n = 7;
+
+  function ang(i) { return -Math.PI / 2 + i * 2 * Math.PI / n; }
+  function pt(i, r) { return [cx + Math.cos(ang(i)) * R * r, cy + Math.sin(ang(i)) * R * r]; }
+
+  ctx.clearRect(0, 0, size, size);
+
+  /* Grid rings (0, 20, 40, 60, 80, 100%) */
+  [0.2, 0.4, 0.6, 0.8, 1.0].forEach(function(g) {
+    ctx.beginPath();
+    for (var i = 0; i < n; i++) {
+      var p = pt(i, g);
+      if (i === 0) ctx.moveTo(p[0], p[1]);
+      else ctx.lineTo(p[0], p[1]);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = "#DDE3E8";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+
+  /* Axes */
+  for (var i = 0; i < n; i++) {
+    var p = pt(i, 1);
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(p[0], p[1]);
+    ctx.strokeStyle = "#DDE3E8";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  /* Data polygon - filled */
+  ctx.beginPath();
+  for (var i = 0; i < n; i++) {
+    var r = Math.max(stats[i].rate, 0.02);
+    var p = pt(i, r);
+    if (i === 0) ctx.moveTo(p[0], p[1]);
+    else ctx.lineTo(p[0], p[1]);
+  }
+  ctx.closePath();
+  ctx.fillStyle = "rgba(79, 124, 135, 0.15)";
+  ctx.fill();
+  ctx.strokeStyle = "#4F7C87";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  /* Data dots */
+  for (var i = 0; i < n; i++) {
+    var r = Math.max(stats[i].rate, 0.02);
+    var p = pt(i, r);
+    ctx.beginPath();
+    ctx.arc(p[0], p[1], 3.5, 0, Math.PI * 2);
+    ctx.fillStyle = LAYER_COLORS[stats[i].layer];
+    ctx.fill();
+  }
+
+  /* Labels with percentage */
+  ctx.textAlign = "center";
+  for (var i = 0; i < n; i++) {
+    var lp = pt(i, 1.25);
+    ctx.fillStyle = LAYER_COLORS[stats[i].layer];
+    ctx.font = "bold 12px 'Hiragino Sans','Noto Sans JP',sans-serif";
+    ctx.textBaseline = "bottom";
+    ctx.fillText(LAYER_ORDER[i], lp[0], lp[1]);
+    ctx.font = "11px 'Hiragino Sans','Noto Sans JP',sans-serif";
+    ctx.textBaseline = "top";
+    ctx.fillText(Math.round(stats[i].rate * 100) + "%", lp[0], lp[1] + 1);
+  }
+}
+
+/* ============================================================
+   Suggestions (Top 1 weakest layer + bridge to LINE CTA)
+   ============================================================ */
+function buildSuggestions(stats, typeKey, ti) {
+  /* Sort by rate ascending, show only the weakest */
+  var sorted = stats.slice().sort(function(a, b) { return a.rate - b.rate; });
+  var weakest = sorted[0];
+
+  var container = document.getElementById("suggestions");
+  container.innerHTML = "";
+
+  var layerItems = ITEMS.filter(function(it) { return it.layer === weakest.layer; });
+
+  var card = document.createElement("div");
+  card.className = "focus-card";
+  card.style.borderLeftColor = LAYER_COLORS[weakest.layer];
+
+  var html = '<div class="lname" style="color:' + LAYER_COLORS[weakest.layer] + '">' + weakest.layer + '</div>' +
+    '<p class="sec" style="margin:2px 0 8px;">' + LAYER_DEF[weakest.layer] + '</p>';
+
+  layerItems.forEach(function(it) {
+    var done = checked.has(it.no);
+    if (done) {
+      html += '<div class="sug done"><div class="box-done"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M2 7l3.5 3.5L12 3" stroke="' + LAYER_COLORS[weakest.layer] + '" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
+        '<div><div class="was-done">' + it.text + '</div></div></div>';
+    } else {
+      html += '<div class="sug"><div class="box-todo"></div>' +
+        '<div><div class="was">' + it.text + '</div><div class="act">→ ' + it.action + '</div></div></div>';
+    }
+  });
+  card.innerHTML = html;
+  container.appendChild(card);
+
+  /* Bridge text to LINE CTA */
+  if (sorted.length > 1 && sorted[1].rate < 1) {
+    var bridge = document.createElement("p");
+    bridge.className = "sec";
+    bridge.style.cssText = "margin:14px 0 0; font-size:14px; line-height:1.75;";
+    var second = sorted[1];
+    var third = sorted.length > 2 ? sorted[2] : null;
+    var names = second.layer;
+    if (third && third.rate < 1) names += "・" + third.layer;
+    bridge.textContent = "ほかにも " + names + " に伸びしろがあります。あなたの暮らしや環境に合わせた具体策は、プロのコーチに相談するのが近道です。";
+    container.appendChild(bridge);
+  }
+}
+
+/* ============================================================
+   Image Export (html2canvas)
+   ============================================================ */
+function exportImage() {
+  trackEvent("image_save");
+  var area = document.getElementById("capture-area");
+  if (typeof html2canvas === "undefined") {
+    alert("画像保存の準備中です。少し待ってからもう一度お試しください。");
+    return;
+  }
+  /* Strip CSS animations so html2canvas sees final state */
+  var hero = document.querySelector(".r-hero");
+  hero.classList.remove("reveal");
+  hero.style.cssText = "";
+  var animEls = area.querySelectorAll(".type-ja, .stat-row");
+  animEls.forEach(function(el) { el.style.animation = "none"; el.style.opacity = "1"; el.style.transform = "none"; });
+
+  html2canvas(area, {
+    backgroundColor: "#FFFFFF",
+    scale: 2,
+    useCORS: true,
+    logging: false
+  }).then(function(canvas) {
+    /* Restore animations */
+    hero.classList.add("reveal");
+    animEls.forEach(function(el) { el.style.animation = ""; el.style.opacity = ""; el.style.transform = ""; });
+    var link = document.createElement("a");
+    link.download = "bestcore_check_full_result.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  }).catch(function(err) {
+    hero.classList.add("reveal");
+    animEls.forEach(function(el) { el.style.animation = ""; el.style.opacity = ""; el.style.transform = ""; });
+    alert("画像の生成に失敗しました。スクリーンショットで保存してください。");
+  });
+}
+
+/* ============================================================
+   Sticky CTA (mobile result page)
+   ============================================================ */
+var stickyIO = null;
+function updateStickyCTA(showing) {
+  var sticky = document.getElementById("sticky-cta");
+  var mainCTA = document.getElementById("cta-line-main");
+  var resultSec = document.getElementById("s-result");
+  if (!sticky || !mainCTA) return;
+
+  if (showing) {
+    if (!stickyIO) {
+      stickyIO = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          sticky.classList.toggle("visible", !entry.isIntersecting);
+        });
+      }, { threshold: 0 });
+    }
+    stickyIO.observe(mainCTA);
+    resultSec.classList.add("has-sticky");
+  } else {
+    if (stickyIO) stickyIO.disconnect();
+    sticky.classList.remove("visible");
+    resultSec.classList.remove("has-sticky");
+  }
+}
+
+/* ============================================================
+   CTA Click Tracking
+   ============================================================ */
+["cta-line-main", "cta-line-sticky"].forEach(function(id) {
+  var el = document.getElementById(id);
+  if (el) el.addEventListener("click", function() { trackEvent("cta_click", "line_" + id); });
+});
+
+/* ============================================================
+   Keyboard
+   ============================================================ */
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") closeModal();
+});
+</script>
+</body>
+</html>
