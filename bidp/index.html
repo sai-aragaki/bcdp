@@ -265,12 +265,13 @@ html:not([data-theme]) .ft,html[data-theme="paper"] .ft{background:#EEEEEE}
 .ft .brand{font-family:var(--font-en);letter-spacing:.12em;color:var(--ink);font-weight:600;margin-bottom:4px}
 .tk-dialog{width:calc(100% - 32px);max-width:680px;max-height:85vh;padding:0;border:none;border-radius:var(--r-card);background:var(--card);color:var(--text);overflow:auto;overscroll-behavior:contain}
 .tk-dialog::backdrop{background:rgba(0,0,0,.45)}
-.tk-head{position:sticky;top:0;background:var(--card);display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line)}
+.tk-head{position:sticky;top:0;z-index:1;background:var(--card);display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px 12px}
 .tk-head h2{font-size:16px}
 .tk-close{font:inherit;font-size:13px;background:none;border:1px solid var(--ink);border-radius:999px;padding:0 16px;min-height:44px;cursor:pointer;color:var(--ink)}
-.kv{margin:8px 20px 20px;width:calc(100% - 40px);font-size:13px}
-.kv th,.kv td{border-top:1px solid var(--line);padding:12px 10px 12px 0}
-.kv tbody th{width:9.5em;color:var(--ink);font-weight:600;font-size:12.5px}
+/* 特商法：05 の概要と同じ面の行で並べる（罫線なし） */
+.tk-spec.spec{margin:0 20px 20px;grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row;gap:8px}
+.tk-spec .spec-row{grid-template-columns:11.5em 1fr;padding:14px 18px;font-size:13.5px}
+@container lp (max-width:767.98px){ .tk-spec .spec-row{grid-template-columns:1fr;gap:2px} }
 
 /* ---------- 案の切り替え（比較用） ---------- */
 .theme-sw{position:fixed;left:16px;bottom:16px;z-index:60;display:flex;align-items:center;gap:4px;background:#fff;border:1px solid #DDD;border-radius:999px;padding:4px;box-shadow:0 4px 18px rgba(0,0,0,.12);font-family:"Noto Sans JP",sans-serif}
@@ -1105,21 +1106,19 @@ a.logo{text-decoration:none;display:inline-flex;align-items:center;min-height:44
       <h2 id="tk-title">特定商取引法に基づく表記</h2>
       <button type="button" class="tk-close" data-close>閉じる ×</button>
     </div>
-      <table class="kv">
-        <tbody>
-          <tr><th>販売事業者</th><td>CoEnRich（屋号）</td></tr>
-          <tr><th>運営責任者</th><td>加藤拓海</td></tr>
-          <tr><th>所在地</th><td>請求があった場合、遅滞なく開示します</td></tr>
-          <tr><th>電話番号</th><td>請求があった場合、遅滞なく開示します</td></tr>
-          <tr><th>メールアドレス</th><td>請求があった場合、遅滞なく開示します</td></tr>
-          <tr><th>販売価格</th><td>モニター価格：税込99,000円</td></tr>
-          <tr><th>商品代金以外の必要料金</th><td>銀行振込の手数料（お客様のご負担となります）、インターネット接続にかかる通信費</td></tr>
-          <tr><th>支払方法・時期</th><td>プログラム開始前日までに銀行振込（分割可・要相談）</td></tr>
-          <tr><th>提供時期</th><td>2027年1月開始想定（講義/セッションの各日程は相談のうえ決定）</td></tr>
-          <tr><th>中断・返金</th><td>体調やご事情の変化などで続けられなくなった場合は、いつでも中断・辞退できます。未実施分の払い戻しはご遠慮いただいています</td></tr>
-          <tr><th>動作環境</th><td>Google Meet・Notion・Google Sheets が使えるパソコンまたはスマートフォン</td></tr>
-        </tbody>
-      </table>
+      <dl class="spec tk-spec">
+        <div class="spec-row"><dt>販売事業者</dt><dd>CoEnRich（屋号）</dd></div>
+        <div class="spec-row"><dt>運営責任者</dt><dd>加藤拓海</dd></div>
+        <div class="spec-row"><dt>所在地</dt><dd>請求があった場合、遅滞なく開示します</dd></div>
+        <div class="spec-row"><dt>電話番号</dt><dd>請求があった場合、遅滞なく開示します</dd></div>
+        <div class="spec-row"><dt>メールアドレス</dt><dd>請求があった場合、遅滞なく開示します</dd></div>
+        <div class="spec-row"><dt>販売価格</dt><dd>モニター価格：税込99,000円</dd></div>
+        <div class="spec-row"><dt>商品代金以外の必要料金</dt><dd>銀行振込の手数料（お客様のご負担となります）、インターネット接続にかかる通信費</dd></div>
+        <div class="spec-row"><dt>支払方法・時期</dt><dd>プログラム開始前日までに銀行振込（分割可・要相談）</dd></div>
+        <div class="spec-row"><dt>提供時期</dt><dd>2027年1月開始想定（講義/セッションの各日程は相談のうえ決定）</dd></div>
+        <div class="spec-row"><dt>中断・返金</dt><dd>体調やご事情の変化などで続けられなくなった場合は、いつでも中断・辞退できます。未実施分の払い戻しはご遠慮いただいています</dd></div>
+        <div class="spec-row"><dt>動作環境</dt><dd>Google Meet・Notion・Google Sheets が使えるパソコンまたはスマートフォン</dd></div>
+      </dl>
   </dialog>
 
   <dialog class="lb" id="lightbox" aria-label="画像を大きく見る">
